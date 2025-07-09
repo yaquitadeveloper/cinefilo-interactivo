@@ -1,5 +1,12 @@
 {
   "name": "cinefilo-interactivo",
   "private": true,
-  "version": "1.0.0"
+  "version": "1.0.0",
+  "scripts": {
+    "dev:frontend": "pnpm --filter frontend dev",
+    "dev:backend": "pnpm --filter backend dev",
+    "start:backend": "pnpm --filter backend start",
+    "install:all": "pnpm install"
+  }
 }
+
