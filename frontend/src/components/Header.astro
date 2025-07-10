@@ -3,116 +3,101 @@
 ---
 
 <header class="bg-white dark:bg-gray-800 shadow-md py-4 px-6">
-  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4">
-    
-    <!-- Sección izquierda: logo + input + toggle en móvil -->
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 px-4 relative">
+
+    <!-- Sección izquierda: logo + input en desktop -->
     <div class="flex items-center gap-4 flex-shrink-0 w-full md:w-auto">
       <!-- Logo -->
-     <div class="flex items-center gap-2">
-  <!-- Botón hamburguesa SOLO visible en móvil -->
- <button
-  id="menu-toggle"
-  class="text-2xl hidden md:block text-gray-700 dark:text-gray-300"
-  aria-label="Abrir menú"
->
-  ☰
-</button>
+      <div class="flex items-center gap-2">
+        <!-- CAMBIO: Botón hamburguesa visible SOLO en md (tablet y desktop) -->
+        <button
+          id="menu-toggle"
+          class="text-2xl hidden md:block text-gray-700 dark:text-gray-300"
+          aria-label="Abrir menú"
+        >
+          ☰
+        </button>
 
-  <!-- Texto del logo -->
-  <h1 class="text-lg md:text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap">
-    Cinéfilo Interactivo
-  </h1>
-</div>
+        <!-- Texto del logo -->
+        <h1 class="text-lg md:text-2xl font-bold text-gray-900 dark:text-white whitespace-nowrap">
+          Cinéfilo Interactivo
+        </h1>
+      </div>
 
-      <!-- Input + toggle en móviles -->
-      <div class="flex items-center gap-2 w-full md:w-64">
+      <!-- CAMBIO: Input de búsqueda en escritorio (junto al logo) -->
+      <div class="hidden md:flex items-center gap-2 w-full md:w-64">
         <input
           type="text"
           placeholder="Buscar películas..."
           class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring focus:ring-indigo-300 w-full"
         />
-
       </div>
     </div>
 
+    <!-- CAMBIO: Input de búsqueda SOLO en móvil (debajo del logo) -->
+    <div class="block md:hidden w-full mt-2">
+      <input
+        type="text"
+        placeholder="Buscar películas..."
+        class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring focus:ring-indigo-300 w-full"
+      />
+    </div>
+
     <!-- Enlaces de navegación centrales -->
-   <nav class="hidden lg:flex gap-8 justify-center text-sm w-full max-w-screen-lg mx-auto">
-    <a href="/" class="text-gray-700 dark:text-gray-300">Inicio</a>
-    <a href="/colecciones" class="text-gray-700 dark:text-gray-300">Colecciones</a>
-    <a href="/categorias" class="text-gray-700 dark:text-gray-300">Categorías</a>
-  </nav>
-
-  <!-- Solo visible en mobile y tablet -->
-    <div class="fixed right-4 top-1/3 flex flex-col gap-4 z-50 lg:hidden">
-      <!-- Icono 1: Inicio -->
-      <button onclick="toggleMenu('menu-inicio')" class="bg-gray-100 dark:bg-gray-700 p-2 rounded-full shadow">
-        🏠
-      </button>
-
-      <!-- Icono 2: Colecciones -->
-      <button onclick="toggleMenu('menu-colecciones')" class="bg-gray-100 dark:bg-gray-700 p-2 rounded-full shadow">
-        🎞️
-      </button>
-
-      <!-- Icono 3: Categorías -->
-      <button onclick="toggleMenu('menu-categorias')" class="bg-gray-100 dark:bg-gray-700 p-2 rounded-full shadow">
-        🗂️
-      </button>
-    </div>
-
-    <!-- Menú flotante: Inicio -->
-    <div id="menu-inicio" class="hidden fixed right-16 top-1/3 bg-white dark:bg-gray-800 p-4 rounded shadow-lg">
-      <a href="/" class="block text-gray-700 dark:text-gray-300">Inicio</a>
-    </div>
-
-    <!-- Menú flotante: Colecciones -->
-    <div id="menu-colecciones" class="hidden fixed right-16 top-1/2 bg-white dark:bg-gray-800 p-4 rounded shadow-lg">
-      <a href="/colecciones" class="block text-gray-700 dark:text-gray-300">Mis colecciones</a>
-    </div>
-
-    <!-- Menú flotante: Categorías -->
-    <div id="menu-categorias" class="hidden fixed right-16 top-2/3 bg-white dark:bg-gray-800 p-4 rounded shadow-lg">
-      <a href="/categorias" class="block text-gray-700 dark:text-gray-300">Explorar</a>
-    </div>
-
-
-
-    <!-- Login + botón de tema (visible en todos los tamaños) -->
-<div class="flex items-center gap-4 w-full md:w-auto justify-end">
-  <a href="/login" class="text-gray-700 dark:text-gray-300 hover:underline text-sm">Login</a>
-
-  <!-- Toggle visible en todos los tamaños -->
-  <button
-    onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('tema', document.documentElement.classList.contains('dark') ? 'dark' : 'light')"
-    class="text-xl text-gray-700 dark:text-gray-300 hover:scale-110 transition-transform duration-150"
-    aria-label="Cambiar tema">
-    <span id="theme-icon">🌞</span>
-  </button>
-
-</div>
-
-
-  </div>
-
-  <aside id="mobile-menu" class="fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 shadow-md transform -translate-x-full transition-transform duration-300 z-50">
-  <div class="p-6 space-y-4">
-    <button
-      id="close-menu"
-      class="text-xl text-gray-700 dark:text-gray-300 float-right"
-      aria-label="Cerrar menú"
-    >
-      ✕
-    </button>
-
-    <nav class="mt-8 flex flex-col space-y-4 text-gray-700 dark:text-gray-300">
-      <a href="/" class="hover:underline">Perfil</a>
-      <a href="/colecciones" class="hover:underline">Configuracion</a>
-      <a href="/categorias" class="hover:underline">Editar Colecciones</a>
-      <a href="/login" class="hover:underline">Cerrar Sesion</a>
+    <nav class="hidden lg:flex gap-8 justify-center text-sm w-full max-w-screen-lg mx-auto">
+      <a href="/" class="text-gray-700 dark:text-gray-300">Inicio</a>
+      <a href="/colecciones" class="text-gray-700 dark:text-gray-300">Colecciones</a>
+      <a href="/categorias" class="text-gray-700 dark:text-gray-300">Categorías</a>
     </nav>
-  </div>
-</aside>
 
+    <!-- CAMBIO: Login + botón tema alineados a la derecha superior en TODAS las pantallas -->
+    <div class="absolute right-4 top-4 flex items-center gap-4">
+      <a href="/login" class="text-gray-700 dark:text-gray-300 hover:underline text-sm">Login</a>
+      <button
+        onclick="document.documentElement.classList.toggle('dark'); localStorage.setItem('tema', document.documentElement.classList.contains('dark') ? 'dark' : 'light')"
+        class="text-xl text-gray-700 dark:text-gray-300 hover:scale-110 transition-transform duration-150"
+        aria-label="Cambiar tema">
+        <span id="theme-icon">🌞</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Íconos móviles (se conservan como estaban) -->
+  <div class="fixed right-4 top-1/3 flex flex-col gap-4 z-50 lg:hidden">
+    <button onclick="toggleMenu('menu-inicio')" class="bg-gray-100 dark:bg-gray-700 p-2 rounded-full shadow">🏠</button>
+    <button onclick="toggleMenu('menu-colecciones')" class="bg-gray-100 dark:bg-gray-700 p-2 rounded-full shadow">🎞️</button>
+    <button onclick="toggleMenu('menu-categorias')" class="bg-gray-100 dark:bg-gray-700 p-2 rounded-full shadow">🗂️</button>
+  </div>
+
+  <!-- Menús flotantes -->
+  <div id="menu-inicio" class="hidden fixed right-16 top-1/3 bg-white dark:bg-gray-800 p-4 rounded shadow-lg">
+    <a href="/" class="block text-gray-700 dark:text-gray-300">Inicio</a>
+  </div>
+  <div id="menu-colecciones" class="hidden fixed right-16 top-1/2 bg-white dark:bg-gray-800 p-4 rounded shadow-lg">
+    <a href="/colecciones" class="block text-gray-700 dark:text-gray-300">Mis colecciones</a>
+  </div>
+  <div id="menu-categorias" class="hidden fixed right-16 top-2/3 bg-white dark:bg-gray-800 p-4 rounded shadow-lg">
+    <a href="/categorias" class="block text-gray-700 dark:text-gray-300">Explorar</a>
+  </div>
+
+  <!-- Menú lateral oculto -->
+  <aside id="mobile-menu" class="fixed top-0 left-0 h-full w-64 bg-white dark:bg-gray-800 shadow-md transform -translate-x-full transition-transform duration-300 z-50">
+    <div class="p-6 space-y-4">
+      <button
+        id="close-menu"
+        class="text-xl text-gray-700 dark:text-gray-300 float-right"
+        aria-label="Cerrar menú"
+      >
+        ✕
+      </button>
+      <nav class="mt-8 flex flex-col space-y-4 text-gray-700 dark:text-gray-300">
+        <a href="/" class="hover:underline">Perfil</a>
+        <a href="/colecciones" class="hover:underline">Configuración</a>
+        <a href="/categorias" class="hover:underline">Editar Colecciones</a>
+        <a href="/login" class="hover:underline">Cerrar Sesión</a>
+      </nav>
+    </div>
+  </aside>
 </header>
 
 <script type="module">
@@ -125,28 +110,27 @@
   const icono = document.getElementById('theme-icon');
 
   openBtn?.addEventListener('click', () => {
-  menu.classList.remove('-translate-x-full');
-   });
+    menu.classList.remove('-translate-x-full');
+  });
 
   closeBtn?.addEventListener('click', () => {
-  menu.classList.add('-translate-x-full');
-   });
+    menu.classList.add('-translate-x-full');
+  });
 
-  
   if (temaGuardado === 'dark') {
     html.classList.add('dark');
     icono.textContent = '🌜';
-   } else {
+  } else {
     html.classList.remove('dark');
     icono.textContent = '🌞';
-   }
+  }
 
-  ddocument.querySelector('button[aria-label="Cambiar tema"]')?.addEventListener('click', () => {
-  const isDark = html.classList.contains('dark');
-  icono.textContent = isDark ? '🌜' : '🌞';
-});
+  document.querySelector('button[aria-label="Cambiar tema"]')?.addEventListener('click', () => {
+    const isDark = html.classList.contains('dark');
+    icono.textContent = isDark ? '🌜' : '🌞';
+  });
 
-   function toggleMenu(id) {
+  function toggleMenu(id) {
     const menu = document.getElementById(id);
     const allMenus = ['menu-inicio', 'menu-colecciones', 'menu-categorias'];
 
