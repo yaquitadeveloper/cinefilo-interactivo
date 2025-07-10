@@ -1,2 +1,6 @@
 @import "tailwindcss";
 
+/* Depuración visual: mostrar contenedores con outline */
+.debug-containers * {
+  outline: 1px dashed rgba(255, 0, 0, 0.5);
+}
