@@ -1,0 +1,22 @@
+
+<input
+  id="search-input"
+  type="text"
+  placeholder="Buscar películas..."
+  class="px-4 py-2 rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-800 dark:text-white focus:outline-none focus:ring focus:ring-indigo-300 w-full"
+/>
+
+<script type="module">
+  import { debounce } from '/src/utils/debounce.js';
+  import { buscarPeliculas } from '/src/utils/tmdb.js';
+
+  const buscar = debounce(async (event) => {
+    const query = event.target.value.trim();
+    if (!query) return;
+    const resultados = await buscarPeliculas(query);
+    console.log(resultados); // aquí procesarías los datos
+  }, 400);
+
+  const input = document.getElementById('search-input');
+  input?.addEventListener('input', buscar);
+</script>
